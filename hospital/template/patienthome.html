@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar Dashboard Template</title>
+    <link rel="stylesheet" href="{% static 'style_dash.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+  {% load static %}
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Coding <span>Snow</span></h3>
+      </div>
+      <div class="right_area">
+        <a href="{% url 'logout' %}" class="logout_btn">Logout</a>
+      </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        <img src="{% static 'static/img/1.png' %}" class="mobile_profile_image" alt="">
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="{% url 'p_home' %}"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="{% url 'profile' %}"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="{% url 'makeappoint' %}"><i class="fas fa-calendar-plus"></i><span>Make Appointment</span></a>
+        <a href="{% url 'viewappoint' %}"><i class="fas fa-th"></i><span>View Appointment</span></a>
+        <a href="#"><i class="fas fa-sticky-note"></i><span>View Prescription</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>--</span></a>
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        <img src="{% static 'static/img/1.png' %}" class="profile_image" alt="">
+        <h4>Jessica</h4>
+      </div>
+      <a href="{% url 'p_home' %}"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="{% url 'profile' %}"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="{% url 'makeappoint' %}"><i class="fas fa-calendar-plus"></i><span>Make Appointment</span></a>
+        <a href="{% url 'viewappoint' %}"><i class="fas fa-th"></i><span>View Appointment</span></a>
+        <a href="#"><i class="fas fa-sticky-note"></i><span>View Prescription</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>--</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+      <div class="card">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      </div>
+      <div class="card">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      </div>
+      <div class="card">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+{% ifequal error "no" %}
+    {% ifequal page "doctor" %}
+    <script type="text/javascript">
+        alert('Logged In Sucessfully..........')
+        window.location = ('{% url 'd_home' %}')
+    </script>
+    {% endifequal %}
+
+    {% ifequal page "patient" %}
+    <script type="text/javascript">
+        alert('Logged In Sucessfully..........')
+        window.location = ('{% url 'p_home' %}')
+    </script>
+    {% endifequal %}
+{% endifequal%}
+
+{% ifequal error "yes" %}
+<script type="text/javascript">
+    alert('Invalid Credentials..........')
+    window.location=('{% url 'login' %}')
+</script>
+{% endifequal%}
+  </body>
+</html>
+
+
+
